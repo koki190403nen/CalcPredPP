@@ -6,8 +6,6 @@ from matplotlib import pyplot as plt
 
 print(datetime.datetime.now())
 # %%
-RR95_img, RR99_img = FitGamma_multi(n=3, h=320, w=300, span=20)
+RR95_img, RR99_img = FitGamma_multi(n=3, h=1600, w=1500, span=100)
 print('Complete')
 print(datetime.datetime.now())
-# %%
-plt.imshow(RR95_img)

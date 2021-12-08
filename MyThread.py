@@ -8,9 +8,9 @@ from scipy import stats
 
 # %%
 class MyThread(threading.Thread):
-    def __init__(self, h=320, w=300, product='chirps25', 
-                in_dir='D:/ResearchData/Level3/CHIRPS25_RAW_f64/',
-                out_dir='D:/ResearchData/Level4/ClimaticNormal_RAW/RRnnpp_test/',
+    def __init__(self, h=1600, w=1500, product='chirps05', 
+                in_dir='H:/2021_Uda/2021_SemiData/Level3/CHIRPS05_RAW_f64/',
+                out_dir='H:/2021_Uda/2021_SemiData/Level4/ClimaticNormal_RAW/RRnnp/',
                 start_row=0, end_row = 320, thread_num = None):
 
         super().__init__()
@@ -102,7 +102,8 @@ class MyThread(threading.Thread):
                 print(self.now_working + f'row:{self.start_row + row} column:{column}, RR95:{str(np.round(RR95,2)).rjust(6)} RR99:{str(np.round(RR99,2)).rjust(6)}\n')
 
 # %%
-def FitGamma_multi(n, h=320, w=300, span=10, out_dir='./img/'):
+def FitGamma_multi(n, h=1600, w=1500, span=100, out_dir='./img/'):
+    print('start')
     RR95_img = np.zeros((4*span, w), dtype=np.float64)  # 400×1500
     RR99_img = np.zeros((4*span, w), dtype=np.float64)  # 400×1500
 
@@ -117,7 +118,7 @@ def FitGamma_multi(n, h=320, w=300, span=10, out_dir='./img/'):
         RR99_img[i*span:(i+1)*span , :] = t1.RR99_img
 
         RR95_img.tofile(out_dir+f'/RR95_n{n}.A1900001.h{span*4}w{w}.raw')
-        RR99_img.tofile(out_dir+f'/RR95_n{n}.A1900001.h{span*4}w{w}.raw')
+        RR99_img.tofile(out_dir+f'/RR99_n{n}.A1900001.h{span*4}w{w}.raw')
 
 
     del t1
